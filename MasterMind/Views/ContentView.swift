@@ -6,20 +6,22 @@
 //
 
 import SwiftUI
+import Foundation
 
 
 struct ContentView: View {
-    //Map of pegRows
-    var pegRows:[PegRow] = [
-        PegRow(1)
-    ]
+    
+    @ObservedObject var viewModel:ViewModel
     
     var body: some View {
         VStack {
             Text("MasterMind").font(.title).padding().background(Color.orange)
             VStack{
-  
-                PegRow(2)
+                ForEach(viewModel.$codeGuesses, id: \.self) { code in
+                    PegRow(2)
+                }
+
+                
                 PegRow(3)
                 PegRow(4)
                 PegRow(5)
@@ -30,7 +32,7 @@ struct ContentView: View {
                 PegRow(10)
             }
             HStack{
-                Text("Turn: ").font(.title2).background(Color.orange).padding()
+                Text("Turn: " + "\(viewModel.$actualTurn)").font(.title2).background(Color.orange).padding()
                 
             }
             
@@ -40,6 +42,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(viewModel: ViewModel())
     }
 }

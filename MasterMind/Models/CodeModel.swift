@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 class CodeModel{
+    
     var codeColors:[Color] = [.black,.black,.black,.black]
     
 }

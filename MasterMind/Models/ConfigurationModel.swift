@@ -9,5 +9,5 @@ import Foundation
 
 class Configuration{
     let codeGuesses:Int = 12
-    
+    let numColors:Int = 4
 }
