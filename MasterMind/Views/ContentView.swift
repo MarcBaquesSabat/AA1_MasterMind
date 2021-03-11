@@ -7,22 +7,18 @@
 
 import SwiftUI
 
-struct row{
-    let number :Int
-    let content:String
-}
 
 struct ContentView: View {
     //Map of pegRows
     var pegRows:[PegRow] = [
-        //PegRow()
+        PegRow(1)
     ]
     
     var body: some View {
         VStack {
             Text("MasterMind").font(.title).padding().background(Color.orange)
             VStack{
-                PegRow(1)
+  
                 PegRow(2)
                 PegRow(3)
                 PegRow(4)
@@ -32,8 +28,6 @@ struct ContentView: View {
                 PegRow(8)
                 PegRow(9)
                 PegRow(10)
-                //PegRow(11)
-                //PegRow(12)
             }
             HStack{
                 Text("Turn: ").font(.title2).background(Color.orange).padding()

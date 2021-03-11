@@ -6,7 +6,16 @@
 //
 
 import Foundation
+import SwiftUI
 
 class ViewModel {
+    
+    let secretCode : CodeModel = CodeModel()
+    
+    
+    
+    func GenerateSecretColor(){
+        
+    }
     
 }

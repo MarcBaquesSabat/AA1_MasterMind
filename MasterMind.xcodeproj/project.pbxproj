@@ -15,6 +15,9 @@
 		EF7D115325F7F7930007A9C8 /* PegHoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7D115225F7F7930007A9C8 /* PegHoleView.swift */; };
 		EF7D115725F7F8040007A9C8 /* PegRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7D115625F7F8040007A9C8 /* PegRow.swift */; };
 		EF7D115B25F8005C0007A9C8 /* AnswerPegGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7D115A25F8005C0007A9C8 /* AnswerPegGrid.swift */; };
+		EF9588C125FA9081002A4E7A /* ConfigurationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9588C025FA9081002A4E7A /* ConfigurationModel.swift */; };
+		EF9588C425FA9092002A4E7A /* CodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9588C325FA9092002A4E7A /* CodeModel.swift */; };
+		EF9588C825FA9206002A4E7A /* CodeReviewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9588C725FA9206002A4E7A /* CodeReviewer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		EF7D115225F7F7930007A9C8 /* PegHoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegHoleView.swift; sourceTree = "<group>"; };
 		EF7D115625F7F8040007A9C8 /* PegRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegRow.swift; sourceTree = "<group>"; };
 		EF7D115A25F8005C0007A9C8 /* AnswerPegGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerPegGrid.swift; sourceTree = "<group>"; };
+		EF9588C025FA9081002A4E7A /* ConfigurationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationModel.swift; sourceTree = "<group>"; };
+		EF9588C325FA9092002A4E7A /* CodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeModel.swift; sourceTree = "<group>"; };
+		EF9588C725FA9206002A4E7A /* CodeReviewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeReviewer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,7 @@
 				EF7D115125F7F77D0007A9C8 /* Views */,
 				EF7D114A25F7F5580007A9C8 /* Models */,
 				EF7D113A25F7F5510007A9C8 /* MasterMindApp.swift */,
+				EF9588C725FA9206002A4E7A /* CodeReviewer.swift */,
 				EF7D114B25F7F6270007A9C8 /* ViewModel.swift */,
 				EF7D113E25F7F5520007A9C8 /* Assets.xcassets */,
 				EF7D114325F7F5520007A9C8 /* Info.plist */,
@@ -82,6 +89,8 @@
 		EF7D114A25F7F5580007A9C8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EF9588C025FA9081002A4E7A /* ConfigurationModel.swift */,
+				EF9588C325FA9092002A4E7A /* CodeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -168,9 +177,12 @@
 			files = (
 				EF7D113D25F7F5510007A9C8 /* ContentView.swift in Sources */,
 				EF7D113B25F7F5510007A9C8 /* MasterMindApp.swift in Sources */,
+				EF9588C125FA9081002A4E7A /* ConfigurationModel.swift in Sources */,
 				EF7D115B25F8005C0007A9C8 /* AnswerPegGrid.swift in Sources */,
 				EF7D114C25F7F6270007A9C8 /* ViewModel.swift in Sources */,
 				EF7D115325F7F7930007A9C8 /* PegHoleView.swift in Sources */,
+				EF9588C825FA9206002A4E7A /* CodeReviewer.swift in Sources */,
+				EF9588C425FA9092002A4E7A /* CodeModel.swift in Sources */,
 				EF7D115725F7F8040007A9C8 /* PegRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
