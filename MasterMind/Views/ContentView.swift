@@ -17,23 +17,18 @@ struct ContentView: View {
         VStack {
             Text("MasterMind").font(.title).padding().background(Color.orange)
             VStack{
-                ForEach(viewModel.$codeGuesses, id: \.self) { code in
-                    PegRow(2)
+                ForEach(viewModel.codeGuesses, id: \.self) { code in
+                    PegRow(0)
                 }
-
-                
-                PegRow(3)
-                PegRow(4)
-                PegRow(5)
-                PegRow(6)
-                PegRow(7)
-                PegRow(8)
-                PegRow(9)
-                PegRow(10)
             }
             HStack{
-                Text("Turn: " + "\(viewModel.$actualTurn)").font(.title2).background(Color.orange).padding()
+                Text("Turn: " + "\(viewModel.actualTurn)").font(.title2).background(Color.orange).padding()
                 
+                Circle().fill(Color.black)
+                Circle().fill(Color.black)
+                Circle().fill(Color.black)
+                Circle().fill(Color.black)
+                Button("Check",action: viewModel.CheckGuess)
             }
             
         }

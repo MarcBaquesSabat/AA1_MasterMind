@@ -24,12 +24,38 @@ class ViewModel : ObservableObject{
     func SetupGame(){
         GenerateSecretColor()
         
+        for _ in 0..<configuration.codeGuesses {
+            var codeModel = CodeModel()
+            for _ in 0..<configuration.numColors {
+                codeModel.codeColors.append(Color.black)
+            }
+            codeGuesses.append(codeModel)
+        }
+        for _ in 0..<configuration.codeGuesses {
+            var codeModel = CodeModel()
+            for _ in 0..<configuration.numColors {
+                codeModel.codeColors.append(Color.black)
+            }
+            codeAnswers.append(codeModel)
+        }
+        
     }
     
-    func CheckGuess(){
-        //Check answer, turn is over
-        let codeReviewer = CodeReviewer()
+    public func CheckGuess(){
+        //Check all has value
+            //If not dont check or pass turn
+        //Else continue
         
+        //Check answer, turn is over
+        var codeReviewer = CodeReviewer()
+        
+        codeReviewer.ReviewCode(codeGuesses[actualTurn], secretCode)
+        UpdateReview()
+        
+        actualTurn += 1
+    }
+    func UpdateReview(){
+        //Actualiza la respuesta segun si es correcta o incorrecta
     }
     
     func WinGame(){
@@ -37,6 +63,11 @@ class ViewModel : ObservableObject{
     }
     
     func GenerateSecretColor(){
+        secretCode = CodeModel()
+        for _ in 0..<configuration.numColors {
+            secretCode.codeColors.append(Color.black)
+        }
+        
         for i in 0..<4 {
             let colorChoosen = Int.random(in: 0..<configuration.numColors)
             switch colorChoosen {

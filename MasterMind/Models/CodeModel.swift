@@ -8,8 +8,11 @@
 import Foundation
 import SwiftUI
 
-class CodeModel{
+struct CodeModel: Hashable {
     
-    var codeColors:[Color] = [.black,.black,.black,.black]
+    var codeColors:[Color]
     
+    init() {
+        codeColors = []
+    }
 }
