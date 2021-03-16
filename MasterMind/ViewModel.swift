@@ -12,6 +12,7 @@ class ViewModel : ObservableObject{
     
     var secretCode : CodeModel = CodeModel()
     let configuration:Configuration = Configuration()
+    var actualPegPainting = 0
     
     @Published var codeGuesses: [CodeModel] = []
     @Published var codeAnswers:[CodeModel] = []
@@ -42,12 +43,16 @@ class ViewModel : ObservableObject{
     }
     
     public func CheckGuess(){
-        //Check all has value
-            //If not dont check or pass turn
-        //Else continue
+        print("Check guess")
         
-        //Check answer, turn is over
-        var codeReviewer = CodeReviewer()
+        for peg in codeGuesses[actualTurn].codeColors {
+            if peg == .black{
+                print("Not all have value!")
+                return
+            }
+        }
+  
+        let codeReviewer = CodeReviewer()
         
         let result = codeReviewer.ReviewCode(codeGuesses[actualTurn], secretCode)
         
@@ -58,13 +63,21 @@ class ViewModel : ObservableObject{
                 LoseGame()
                 return
             }
-            UpdateReview()
+            
             actualTurn += 1
+            actualPegPainting = 0
         }          
     }
     
-    func UpdateReview(){
-        //Actualiza la respuesta segun si es correcta o incorrecta
+    func SetColor(){
+        codeGuesses[actualTurn].codeColors[actualPegPainting] = Color.red
+        if(actualPegPainting < 4){
+            actualPegPainting += 1
+        }
+    }
+    
+    func Clear(){
+        
     }
     
     func WinGame(){

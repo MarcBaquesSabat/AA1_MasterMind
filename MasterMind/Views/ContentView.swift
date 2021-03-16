@@ -17,20 +17,32 @@ struct ContentView: View {
         VStack {
             Text("MasterMind").font(.title).padding().background(Color.orange)
             VStack{
+                
                 ForEach(viewModel.codeGuesses, id: \.self) { code in
-                    PegRow(0)
+                    PegRow()
                 }
             }
             HStack{
-                Text("Turn: " + "\(viewModel.actualTurn)").font(.title2).background(Color.orange).padding()
+                Text("Turn: " + "\(viewModel.actualTurn)")
+                    .font(.body)
+                    .background(Color.orange)
+                    .padding()
                 
-                Circle().fill(Color.black)
-                Circle().fill(Color.black)
-                Circle().fill(Color.black)
-                Circle().fill(Color.black)
+                Button("     ",action: viewModel.SetColor).background(Color.red).clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                    .frame(width: 35,height: 35)
+                Button("     ",action: viewModel.SetColor).background(Color.blue).clipShape(Circle())
+                    .frame(width: 35,height: 35)
+                Button("     ",action: viewModel.SetColor).background(Color.green).clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                    .frame(width: 35,height: 35)
+                Button("     ",action: viewModel.SetColor).background(Color.yellow).clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                    .frame(width: 35,height: 35)
+    
                 Button("Check",action: viewModel.CheckGuess)
             }
-            
+            HStack{
+                Button("Clear", action: viewModel.CheckGuess)
+                Button("Restart", action: viewModel.CheckGuess)
+            }
         }
     }
 }
