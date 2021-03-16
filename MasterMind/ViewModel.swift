@@ -49,17 +49,30 @@ class ViewModel : ObservableObject{
         //Check answer, turn is over
         var codeReviewer = CodeReviewer()
         
-        codeReviewer.ReviewCode(codeGuesses[actualTurn], secretCode)
-        UpdateReview()
+        let result = codeReviewer.ReviewCode(codeGuesses[actualTurn], secretCode)
         
-        actualTurn += 1
+        if(result.positioned == 4){
+            WinGame()
+        }else{
+            if(actualTurn >= 12){
+                LoseGame()
+                return
+            }
+            UpdateReview()
+            actualTurn += 1
+        }          
     }
+    
     func UpdateReview(){
         //Actualiza la respuesta segun si es correcta o incorrecta
     }
     
     func WinGame(){
-        
+        print("Win")
+    }
+    
+    func LoseGame(){
+        print("Lose")
     }
     
     func GenerateSecretColor(){
