@@ -14,9 +14,9 @@ class ViewModel : ObservableObject{
     let configuration:Configuration = Configuration()
     var actualPegPainting = 0
     
-    @Published var codeGuesses: [CodeModel] = []
-    @Published var codeAnswers:[CodeModel] = []
-    @Published var actualTurn : Int = 1
+    @Published var totalCodes : (codeGuesses: [CodeModel], codeAnswers: [CodeModel]) = ([],[])
+    @Published var actualTurn : Int = 0
+    @Published var indexs:[Int] = [0,1,2,3,4,5,6,7,8,9,10,11]
     
     init() {
         SetupGame()
@@ -25,19 +25,19 @@ class ViewModel : ObservableObject{
     func SetupGame(){
         GenerateSecretColor()
         
-        for _ in 0..<configuration.codeGuesses {
+        for index in 0..<configuration.codeGuesses {
+            
             var codeModel = CodeModel()
             for _ in 0..<configuration.numColors {
                 codeModel.codeColors.append(Color.black)
             }
-            codeGuesses.append(codeModel)
-        }
-        for _ in 0..<configuration.codeGuesses {
-            var codeModel = CodeModel()
+            totalCodes.codeGuesses.append(codeModel)
+            
+            var codeModel2 = CodeModel()
             for _ in 0..<configuration.numColors {
-                codeModel.codeColors.append(Color.black)
+                codeModel2.codeColors.append(Color.black)
             }
-            codeAnswers.append(codeModel)
+            totalCodes.codeAnswers.append(codeModel2)
         }
         
     }
@@ -45,7 +45,7 @@ class ViewModel : ObservableObject{
     public func CheckGuess(){
         print("Check guess")
         
-        for peg in codeGuesses[actualTurn].codeColors {
+        for peg in totalCodes.codeGuesses[actualTurn].codeColors {
             if peg == .black{
                 print("Not all have value!")
                 return
@@ -54,7 +54,18 @@ class ViewModel : ObservableObject{
   
         let codeReviewer = CodeReviewer()
         
-        let result = codeReviewer.ReviewCode(codeGuesses[actualTurn], secretCode)
+        let result = codeReviewer.ReviewCode(totalCodes.codeGuesses[actualTurn], secretCode)
+        
+        //Update answer
+        //It needs to random position
+        var tempIndex = 0
+        for _ in 0..<result.positioned {
+            totalCodes.codeAnswers[actualTurn].codeColors[tempIndex] = .white
+            tempIndex += 1
+        }
+        for _ in 0..<result.missPositioned {
+            totalCodes.codeAnswers[actualTurn].codeColors[tempIndex] = .red
+        }
         
         if(result.positioned == 4){
             WinGame()
@@ -69,15 +80,40 @@ class ViewModel : ObservableObject{
         }          
     }
     
-    func SetColor(){
-        codeGuesses[actualTurn].codeColors[actualPegPainting] = Color.red
+    func SetColor(_ colorChoosen: Color){
         if(actualPegPainting < 4){
+            totalCodes.codeGuesses[actualTurn].codeColors[actualPegPainting] = colorChoosen
             actualPegPainting += 1
         }
     }
     
     func Clear(){
+        for i in 0..<configuration.numColors {
+            totalCodes.codeGuesses[actualTurn].codeColors[i] = .black
+        }
+        actualPegPainting = 0
+    }
+    
+    func Restart(){
+        //Reset State
+        actualTurn = 0
+        actualPegPainting = 0
         
+        //Clean GuessCodes
+        for codeGuessIndex in 0..<configuration.codeGuesses {
+            for codeColorIndex in 0..<configuration.numColors {
+                totalCodes.codeGuesses[codeGuessIndex].codeColors[codeColorIndex] = .black
+            }
+        }
+        //Clean Answers
+        for codeGuessIndex in 0..<configuration.codeGuesses {
+            for codeColorIndex in 0..<configuration.numColors {
+                totalCodes.codeAnswers[codeGuessIndex].codeColors[codeColorIndex] = .black
+            }
+        }
+        //Generate new state
+        GenerateSecretColor()
+        print("Restart")
     }
     
     func WinGame(){

@@ -18,11 +18,15 @@ struct PegHoleView: View {
             .frame(width: self.width, height: self.height)
             .shadow(color: .black, radius:5)
     }
+    
+    init(_ color:Color) {
+        self.color = color
+    }
 }
 
 struct PegHoleView_Previews: PreviewProvider {
     static var previews: some View {
-        PegHoleView()
+        PegHoleView(Color.black)
     }
 }
 
