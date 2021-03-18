@@ -23,8 +23,9 @@ struct ContentView: View {
                 .padding()
             Button("RESTART",action: { viewModel.Restart()})
         }else if(viewModel.gameState == GameState.GAME){
-            VStack {
-                VStack{
+            VStack(alignment: .center, spacing: 1.0) {
+                
+                VStack(alignment: .center){
                     ForEach(viewModel.indexs, id: \.self) { code in
                         HStack{
                             PegRow(viewModel.totalCodes.codeGuesses[code])
@@ -32,6 +33,7 @@ struct ContentView: View {
                         }
                     }
                 }
+                Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
                 HStack{
 
                     Text("Turn: " + "\(viewModel.actualTurn + 1)")
@@ -50,15 +52,18 @@ struct ContentView: View {
                     Button("Check",action: viewModel.CheckGuess)
                 }
                 HStack{
-                    Button("Clear", action: viewModel.Clear)
+                    Button(action: viewModel.Clear) {
+                        Image(systemName: "trash")
+                    }
                     Button("Restart", action: viewModel.Restart)
-                }
+                }.frame(width: UIScreen.main.bounds.width, height: 20)
             }
+            .padding(.bottom)
+            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            
+            
         }else if(viewModel.gameState == GameState.START){
-            VStack{
-                Text("MasterMind").font(.title).padding().background(Color.orange)
-                Button("START",action: { viewModel.Start()})
-            }
+            StartView(viewModel: viewModel)
         }
     }
 }

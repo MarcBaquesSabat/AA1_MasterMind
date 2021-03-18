@@ -24,7 +24,7 @@ class ViewModel : ObservableObject{
     @Published var totalCodes : (codeGuesses: [CodeModel], codeAnswers: [CodeModel]) = ([],[])
     @Published var actualTurn : Int = 0
     @Published var indexs:[Int] = [0,1,2,3,4,5,6,7,8,9,10,11]
-    @Published var gameState = GameState.START
+    @Published var gameState = GameState.GAME
     
     init() {
         SetupGame()
