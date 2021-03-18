@@ -45,6 +45,14 @@ struct ContentView: View {
                 Button("Clear", action: viewModel.Clear)
                 Button("Restart", action: viewModel.Restart)
             }
+            if(viewModel.gameState == GameState.WIN){
+                Text("You win!")
+            }else if(viewModel.gameState == GameState.LOSE){
+                Text("You lose!").font(.body)
+                    .background(Color.orange)
+                    .padding()
+            }
+            
         }
     }
 }

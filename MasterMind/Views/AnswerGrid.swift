@@ -14,12 +14,12 @@ struct AnswerGrid: View {
     var body: some View {
         VStack{
             HStack{
-                Circle().fill(colors[0]).frame(width: 8, height: 8)
-                Circle().fill(colors[1]).frame(width: 8, height: 8)
+                Circle().fill(colors[0]).frame(width: 8, height: 8).border(Color.black)
+                Circle().fill(colors[1]).frame(width: 8, height: 8).border(Color.black)
             }
             HStack{
-                Circle().fill(colors[2]).frame(width: 8, height: 8)
-                Circle().fill(colors[3]).frame(width: 8, height: 8)
+                Circle().fill(colors[2]).frame(width: 8, height: 8).border(Color.black)
+                Circle().fill(colors[3]).frame(width: 8, height: 8).border(Color.black)
             }
         }
         

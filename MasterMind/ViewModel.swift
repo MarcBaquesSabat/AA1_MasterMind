@@ -8,6 +8,12 @@
 import Foundation
 import SwiftUI
 
+enum GameState{
+    case GAME
+    case WIN
+    case LOSE
+}
+
 class ViewModel : ObservableObject{
     
     var secretCode : CodeModel = CodeModel()
@@ -17,6 +23,7 @@ class ViewModel : ObservableObject{
     @Published var totalCodes : (codeGuesses: [CodeModel], codeAnswers: [CodeModel]) = ([],[])
     @Published var actualTurn : Int = 0
     @Published var indexs:[Int] = [0,1,2,3,4,5,6,7,8,9,10,11]
+    @Published var gameState = GameState.GAME
     
     init() {
         SetupGame()
@@ -25,7 +32,7 @@ class ViewModel : ObservableObject{
     func SetupGame(){
         GenerateSecretColor()
         
-        for index in 0..<configuration.codeGuesses {
+        for _ in 0..<configuration.codeGuesses {
             
             var codeModel = CodeModel()
             for _ in 0..<configuration.numColors {
@@ -58,6 +65,7 @@ class ViewModel : ObservableObject{
         
         //Update answer
         //It needs to random position
+        print(result)
         var tempIndex = 0
         for _ in 0..<result.positioned {
             totalCodes.codeAnswers[actualTurn].codeColors[tempIndex] = .white
@@ -113,15 +121,18 @@ class ViewModel : ObservableObject{
         }
         //Generate new state
         GenerateSecretColor()
+        gameState = .GAME
         print("Restart")
     }
     
     func WinGame(){
         print("Win")
+        gameState = .WIN
     }
     
     func LoseGame(){
         print("Lose")
+        gameState = .LOSE
     }
     
     func GenerateSecretColor(){
@@ -145,6 +156,10 @@ class ViewModel : ObservableObject{
                 return
             }
         }
+        for i in 0..<4{
+            print(secretCode.codeColors[i])
+        }
+        
     }
     
 }
