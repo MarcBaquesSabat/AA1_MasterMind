@@ -12,6 +12,7 @@ import Foundation
 struct ContentView: View {
     
     @ObservedObject var viewModel:ViewModel
+    let buttonChoseSize: CGFloat = 100
     
     var body: some View {
         
@@ -33,31 +34,74 @@ struct ContentView: View {
                         }
                     }
                 }
-                Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
+                .scaledToFill()
+               
                 HStack{
 
                     Text("Turn: " + "\(viewModel.actualTurn + 1)")
                         .font(.body)
                         .background(Color.orange)
                         .padding()
-                    Button("     ",action: {viewModel.SetColor(Color.red)}).background(Color.red).clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                    
+                    Button("     ",action: {viewModel.SetColor(Color.red)})
+                        .background(Color.red)
+                        .overlay(
+                            Circle().stroke(Color.white, lineWidth: 4)
+                        )
+                        .clipShape(Circle())
                         .frame(width: 35,height: 35)
-                    Button("     ",action: {viewModel.SetColor(Color.blue)}).background(Color.blue).clipShape(Circle())
+                        
+                    Button("     ",action: {viewModel.SetColor(Color.blue)})
+                        .background(Color.blue)
+                        .overlay(
+                            Circle().stroke(Color.white, lineWidth: 4)
+                        )
+                        .clipShape(Circle())
                         .frame(width: 35,height: 35)
-                    Button("     ",action: {viewModel.SetColor(Color.green)}).background(Color.green).clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                    
+                    Button("     ",action: {viewModel.SetColor(Color.green)})
+                        .background(Color.green)
+                        .overlay(
+                            Circle().stroke(Color.white, lineWidth: 4)
+                        )
+                        .clipShape(Circle())
                         .frame(width: 35,height: 35)
-                    Button("     ",action: {viewModel.SetColor(Color.yellow)}).background(Color.yellow).clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                    
+                    Button("        ",action: {viewModel.SetColor(Color.yellow)})
+                        .background(Color.yellow)
+                        .overlay(
+                            Circle().stroke(Color.white, lineWidth: 4)
+                        )
+                        .clipShape(Circle())
                         .frame(width: 35,height: 35)
+                        
         
-                    Button("Check",action: viewModel.CheckGuess)
+                    Button(action: viewModel.CheckGuess) {
+                        Image(systemName: "play")
+                            .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    }
                 }
                 HStack{
                     Button(action: viewModel.Clear) {
-                        Image(systemName: "trash")
+                        Image(systemName: "trash.circle")
+                            .background(Color.white)
+                            .clipShape(Circle())
                     }
-                    Button("Restart", action: viewModel.Restart)
+                    Button( "Restart",action: viewModel.Restart)
+                        .padding(1)
+                        .background(Color.white)
+                        .padding(5)
+                        .border(Color.white, width: 2)
+                        .cornerRadius(/*@START_MENU_TOKEN@*/3.0/*@END_MENU_TOKEN@*/)
+                    
                 }.frame(width: UIScreen.main.bounds.width, height: 20)
-            }
+                    
+            
+            }.background(
+                Image("GameBG")
+                    .resizable()
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                )
             .padding(.bottom)
             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             

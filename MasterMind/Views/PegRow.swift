@@ -17,7 +17,6 @@ struct PegRow: View {
             PegHoleView(colors[1])
             PegHoleView(colors[2])
             PegHoleView(colors[3])
-            
         }
     }
     

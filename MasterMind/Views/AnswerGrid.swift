@@ -14,12 +14,12 @@ struct AnswerGrid: View {
     var body: some View {
         VStack{
             HStack{
-                Circle().fill(colors[0]).frame(width: 8, height: 8).border(Color.black)
-                Circle().fill(colors[1]).frame(width: 8, height: 8).border(Color.black)
+                Circle().fill(colors[0]).frame(width: 8, height: 8).border(Color.white)
+                Circle().fill(colors[1]).frame(width: 8, height: 8).border(Color.white)
             }
             HStack{
-                Circle().fill(colors[2]).frame(width: 8, height: 8).border(Color.black)
-                Circle().fill(colors[3]).frame(width: 8, height: 8).border(Color.black)
+                Circle().fill(colors[2]).frame(width: 8, height: 8).border(Color.white)
+                Circle().fill(colors[3]).frame(width: 8, height: 8).border(Color.white)
             }
         }
         
@@ -32,6 +32,6 @@ struct AnswerGrid: View {
 
 struct AnswerGrid_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerGrid([.black,.black, .black, .black])
+        AnswerGrid([.white,.white, .white, .white])
     }
 }

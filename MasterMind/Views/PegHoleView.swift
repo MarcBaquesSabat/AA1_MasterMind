@@ -9,9 +9,9 @@ import SwiftUI
 
 struct PegHoleView: View {
     
-    var color:Color = Color.black
-    var height:CGFloat = 20.0
-    var width:CGFloat = 20.0
+    var color:Color = Color.white
+    var height:CGFloat = 35.0
+    var width:CGFloat = 35.0
     
     var body: some View {
         Circle().fill(color)
@@ -26,7 +26,7 @@ struct PegHoleView: View {
 
 struct PegHoleView_Previews: PreviewProvider {
     static var previews: some View {
-        PegHoleView(Color.black)
+        PegHoleView(Color.white)
     }
 }
 

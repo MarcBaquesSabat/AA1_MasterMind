@@ -37,7 +37,7 @@ class ViewModel : ObservableObject{
             
             var codeModel = CodeModel()
             for _ in 0..<configuration.numColors {
-                codeModel.codeColors.append(Color.black)
+                codeModel.codeColors.append(Color.white)
             }
             totalCodes.codeGuesses.append(codeModel)
             
@@ -109,13 +109,13 @@ class ViewModel : ObservableObject{
         //Clean GuessCodes
         for codeGuessIndex in 0..<configuration.codeGuesses {
             for codeColorIndex in 0..<configuration.numColors {
-                totalCodes.codeGuesses[codeGuessIndex].codeColors[codeColorIndex] = .black
+                totalCodes.codeGuesses[codeGuessIndex].codeColors[codeColorIndex] = .white
             }
         }
         //Clean Answers
         for codeGuessIndex in 0..<configuration.codeGuesses {
             for codeColorIndex in 0..<configuration.numColors {
-                totalCodes.codeAnswers[codeGuessIndex].codeColors[codeColorIndex] = .black
+                totalCodes.codeAnswers[codeGuessIndex].codeColors[codeColorIndex] = .white
             }
         }
         //Generate new state
