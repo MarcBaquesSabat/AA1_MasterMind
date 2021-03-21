@@ -18,10 +18,17 @@ struct ContentView: View {
         
         if(viewModel.gameState == GameState.WIN){
             Text("You win!")
+                .font(.body)
+                .padding(4)
+                .background(Color.white)
+                .border(Color.blue, width: 2)
+            Button("RESTART",action: { viewModel.Restart()})
         }else if(viewModel.gameState == GameState.LOSE){
-            Text("You lose!").font(.body)
-                .background(Color.orange)
-                .padding()
+            Text("You lose!")
+                .font(.body)
+                .padding(4)
+                .background(Color.white)
+                .border(Color.blue, width: 2)
             Button("RESTART",action: { viewModel.Restart()})
         }else if(viewModel.gameState == GameState.GAME){
             VStack(alignment: .center, spacing: 1.0) {
@@ -29,19 +36,21 @@ struct ContentView: View {
                 VStack(alignment: .center){
                     ForEach(viewModel.indexs, id: \.self) { code in
                         HStack{
+                            Text("\(code + 1)")
+                                .foregroundColor(.white)
                             PegRow(viewModel.totalCodes.codeGuesses[code])
                             AnswerGrid(viewModel.totalCodes.codeAnswers[code].codeColors)
                         }
                     }
                 }
-                .scaledToFill()
                
                 HStack{
 
                     Text("Turn: " + "\(viewModel.actualTurn + 1)")
                         .font(.body)
-                        .background(Color.orange)
-                        .padding()
+                        .padding(4)
+                        .background(Color.white)
+                        .border(Color.blue, width: 2)
                     
                     Button("     ",action: {viewModel.SetColor(Color.red)})
                         .background(Color.red)
@@ -77,21 +86,26 @@ struct ContentView: View {
                         
         
                     Button(action: viewModel.CheckGuess) {
-                        Image(systemName: "play")
-                            .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        Image(systemName: "play.circle")
+                            .resizable()
+                            .background(Color.white)
+                            .frame(width: 35, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
                     }
                 }
                 HStack{
                     Button(action: viewModel.Clear) {
                         Image(systemName: "trash.circle")
+                            .resizable()
                             .background(Color.white)
+                            .frame(width: 35, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                             .clipShape(Circle())
                     }
                     Button( "Restart",action: viewModel.Restart)
-                        .padding(1)
+                        .padding(4)
                         .background(Color.white)
-                        .padding(5)
-                        .border(Color.white, width: 2)
+                        .foregroundColor(.black)
+                        .border(Color.blue, width: 2)
                         .cornerRadius(/*@START_MENU_TOKEN@*/3.0/*@END_MENU_TOKEN@*/)
                     
                 }.frame(width: UIScreen.main.bounds.width, height: 20)

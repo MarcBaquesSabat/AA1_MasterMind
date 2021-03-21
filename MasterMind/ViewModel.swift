@@ -24,7 +24,7 @@ class ViewModel : ObservableObject{
     @Published var totalCodes : (codeGuesses: [CodeModel], codeAnswers: [CodeModel]) = ([],[])
     @Published var actualTurn : Int = 0
     @Published var indexs:[Int] = [0,1,2,3,4,5,6,7,8,9,10,11]
-    @Published var gameState = GameState.GAME
+    @Published var gameState = GameState.START
     
     init() {
         SetupGame()
@@ -96,7 +96,7 @@ class ViewModel : ObservableObject{
     
     func Clear(){
         for i in 0..<configuration.numColors {
-            totalCodes.codeGuesses[actualTurn].codeColors[i] = .black
+            totalCodes.codeGuesses[actualTurn].codeColors[i] = .white
         }
         actualPegPainting = 0
     }
@@ -115,7 +115,7 @@ class ViewModel : ObservableObject{
         //Clean Answers
         for codeGuessIndex in 0..<configuration.codeGuesses {
             for codeColorIndex in 0..<configuration.numColors {
-                totalCodes.codeAnswers[codeGuessIndex].codeColors[codeColorIndex] = .white
+                totalCodes.codeAnswers[codeGuessIndex].codeColors[codeColorIndex] = .black
             }
         }
         //Generate new state
